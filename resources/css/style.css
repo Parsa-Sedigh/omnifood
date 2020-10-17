@@ -1,0 +1,824 @@
+
+/*--------------------------------------- */
+/* Basic setup */
+/*--------------------------------------- */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-weight: 300;
+    /* Basic font size of out HTML document.So this font-size will apply to all of the elements of our document.So when 
+    in our elements you say : font-size:110% , because the parent of that child has font-size of 20px (because this 
+    20px was applied to all of the HTML elements) that child has a font-size relative to 20px but 10% more of 20px.
+    Right?
+    So this way of writing font-size will become very handy when you want to write media queries.So when you are writing
+    media queries, if you change the font-size of html, all of the DOM elements font-size will change.Also the ones that
+    have % font-size.So it is very handy to use % for font-sizes.
+    When you declare font-size based on percentages, means they are based on the base font-size (the font-size we declared
+    in html or body)
+     */
+    font-size: 20px; 
+    text-rendering: optimizeLegibility;
+
+    /* When page gets a horizental scrollbar, we can get rid of that scrollbar with this property.It doesn't matter that
+    scrollbar is happening in mobile view or tablet view or ... (any size of browser doesn't matter), because these 
+    styles in this file will apply to all of the browser sizes, UNTIL WE OVERWRITE THEM IN media queries. */
+    overflow-x: hidden;
+}
+
+.clearfix:after {
+    zoom:1;
+    content:'.';
+    clear:both;
+    display:block;
+    height:0;
+    visibility: hidden;
+}
+
+/*--------------------------------------- */
+/* Reusable components */
+/*--------------------------------------- */
+.row {
+    max-width: 1140px; /* This is ONLY value in our project that has px measurement */
+    margin: 0 auto; /* To center a container inside another container we do this ... */
+}
+
+section {
+    padding:80px 0px;
+}
+
+
+h1, h2, h3 {
+   
+    text-transform: uppercase;
+    word-spacing: 4px;
+
+}
+
+h1 {
+    margin-top: 0; /* Because of normalize-folder , the h1 has default margins... */
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 240%; /* In responsive web design we want everything to be relative */
+    font-weight: 100; /* Usually h1 element comes with bold formatting and that's not what we want */
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size:110%;
+    margin-bottom:15px;
+}
+
+h2:after {
+    display:block;
+    height:2px;
+    background-color: #e67e22;
+    content: ' '; /* We must specify this content for :after and :before psuedo classes.*/
+    width:100px;
+    margin: 0 auto;
+    margin-top: 30px; 
+}
+
+.box {
+    padding: 1%;
+}
+
+/*--------------------------------------- */
+/* Paragraphs */
+/*--------------------------------------- */
+
+.long-copy {
+    /* line-height should be between 120% and 145% */
+    line-height: 145%;
+    width: 70%; /*  */
+    margin-left: 15%;
+}
+
+.long-copy p {
+    font-size: 90%;
+    line-height: 145%;
+}
+
+/*--------------------------------------- */
+/* Icons */
+/*--------------------------------------- */
+
+.icon-big {
+    font-size:350%;
+    display: block;
+    color:#e67e22;
+    margin-bottom: 10px;
+}
+
+.icon-small {
+    /* I give it display of inline-block to assign them some width and height.Remember: We want our icons to be aligned so we 
+    give them some width and then text-align.*/
+    display:inline-block;
+    width:30px;
+    text-align:center;
+    color:#e67e22;
+    transform: scale(1.3);
+    margin-right:10px;
+
+    /* Secretes to align text and icons: */
+    line-height: 150%; /* Equal to font-size */
+    vertical-align: middle;
+
+    margin-top:-4px;
+
+
+}
+
+/*--------------------------------------- */
+/* Links */
+/*--------------------------------------- */
+a:link, a:visited {
+    color:#e67e22;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #e67e22;
+    transition: border-bottom 0.5s, color 1s;
+}
+
+a:hover, a:active {
+    color:#555;
+
+    /* We want the bottom border to disappear when we hove on it,so intead of making it 0px, we make it transparent. */
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.2s, color 0.2s;
+}
+
+/*--------------------------------------- */
+/* Buttons */
+/*--------------------------------------- */
+.btn:link, .btn:visited, input[type=submit] {
+    /* .btn:link and .btn:visited have the same style. */
+    /* inline-block elements are just like inline elements (don't force a line break) but can accept padding and
+    margin  */
+    /* :link is the element in normal state. */
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: background-color 0.5s ,border 0.5s ,color 0.5s;
+}
+
+
+.btn-full:link, .btn-full:visited, input[type=submit] {
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.btn-ghost:link, .btn-ghost:visited {
+    /* This button is bigger (both height and width) than the btn-full button because:The width and the height of
+    an element is :the content + padding + margin .But we want both of these elements to have equal width and height.
+     so we add the border for btn-full too. */
+    border: 1px solid #e67e22;
+    color: #e67e22;
+}
+
+/* Links (<a>) can have different states in css : visited,hover,active(when we click on a button) and link. */
+
+.btn:hover, .btn:active, input[type=submit]:hover, input[type=submit]:active {
+    background-color: #cf6d17;
+
+}
+
+.btn-full:hover, .btn-full:active {
+    border:1px solid #cf6d17;
+
+}
+
+.btn-ghost:hover , .btn-ghost:active {
+    border:1px solid #cf6d17;
+    color:#fff;
+}
+
+
+/*--------------------------------------- */
+/* Headings */
+/*--------------------------------------- */
+header {
+    /* Since we don't want a gradient here, we just set the gradient from black to black. (with a little transparency)*/
+    /* We want the image to be a transparent so we use rgba() to make a transparency... */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+.hero-text-box {
+    /* We want to center the .hero-text-box horizontally and vertically */
+
+    /* position:absolute; is the only way to center a box horizontally and vertically. */
+    position: absolute;
+    /* With this width , the box will looks like a row because it has a same width as a row */
+    width: 1140px;
+    top: 50%;
+    left: 50%;
+    /* Translates the element half of it's width and half of it's height , to the up and left. */
+    transform: translate(-50%, -50%);
+}
+
+/* Our logo in website is in header so we put it in the css header. */
+.logo {
+    height:100px;
+    width:auto;
+    float:left;
+    margin-top:20px;
+}
+
+.logo-black {
+    display:none;
+    height:50px;
+    width:auto;
+    float:left;
+    margin-top:5px;
+}
+
+/* Main navigation */
+.main-nav {
+    float:right;
+    list-style: none;
+    margin-top:55px;
+}
+
+.main-nav li {
+    display:inline-block;
+    margin-left:40px;
+}
+
+.main-nav li a:link , .main-nav li a:visited {
+    padding:8px 0;
+    color:#fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent; /* This will not be visible until we hover it. */
+    transition: border-bottom 0.5s;
+
+    /* We want our <a> tags in main-nav to have font-size:18px; BUT we said that after the original font-size(our
+    html font-size which is 20px, we will never use px again! So we must express this font-size by percentage.) */
+    font-size:90%; /* 18px */
+}
+
+.main-nav li a:hover , .main-nav li a:active {
+border-bottom: 2px solid #e67e22;
+
+}
+
+/* Sticky navigation */
+.sticky {
+    position:fixed;
+    top:0;
+    left:0;
+
+    /* The next css property is very important in this case: */
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.774);
+    box-shadow: 0 6px 6px #efefef;
+    z-index: 9999;
+}
+
+.sticky .main-nav {
+    margin-top:18px;
+}
+
+.sticky .main-nav li a:link , .sticky .main-nav li a:visited {
+    padding:12px 0;
+    color:#555;
+} 
+
+/* We know that .logo-black is display:none; by default, but if it is visible (we made it with jquery) we want to style it
+ in this way: */
+ .sticky .logo-black {
+     display:block;
+ }
+
+ .sticky .logo {
+     display:none;
+ }
+
+ /* Mobile navigation: */
+ .mobile-nav-icon {
+     float:right;
+     margin-top:10px;
+
+     /* Because we didn't specify the href attr in <a> we need to specify pointer for cursor to show that icon like a link in website. */
+     cursor: pointer;
+     display:none;
+ }
+
+ .mobile-nav-icon ion-icon {
+     font-size: 200%;
+     color:#fff;
+ }
+
+/*--------------------------------------- */
+/* Features */
+/*--------------------------------------- */
+
+.section-features h2 {
+    font-weight:300;
+}
+
+.section-features .long-copy {
+    margin-bottom: 30px;
+}
+
+/*--------------------------------------- */
+/* Meals */
+/*--------------------------------------- */
+
+.section-meals {
+    padding:0;
+}
+
+.meals-showcase {
+    list-style: none;
+    width: 100%;
+}
+
+.meals-showcase li {
+    display: block;
+    float:left;
+    width:25%;
+}
+
+/* For making an image darker, you can give opacity to image itself, and make the background of container of the image dark.(Remember
+background of the container not image itself.) */
+
+.meal-photo {
+    width:100%;
+    margin:0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.meal-photo img {
+    width:100%;
+    height:auto;
+    transform: scale(1.15);
+    opacity: 0.7;
+    transition: transform 0.5s;
+}
+
+.meal-photo img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+
+/*--------------------------------------- */
+/* How it works */
+/*--------------------------------------- */
+
+.section-steps {
+    background-color: #f4f4f4;
+}
+
+.section-steps h2 {
+    font-weight: 300;
+}
+
+.steps-box {
+    margin-top:30px;
+    float:left;
+}
+
+.steps-box:first-child {
+    /* text-align property works for all inline and inline-block ??? elements  */
+    text-align: right;
+    padding-right: 3%
+}
+
+.steps-box:last-child {
+    padding-left:3%;
+    margin-top:75px;
+}
+
+.app-screen {
+    width: 40%;
+}
+
+.works-step {
+    margin-bottom: 50px;
+}
+
+.works-step:last-of-type {
+    margin-bottom:80px;
+}
+
+.works-step div {
+    color:#e67e22;
+    border:2px solid #e67e22;
+    display:inline-block;
+    border-radius: 50%;
+    /* If you want to create a circle, the width and height must be equal. */
+    /* Remember: Maybe a block element doesn't show that it's forces to line break, but after we give it a float, the line break will
+    gone.; */
+    height:55px;
+    width:55px;
+    text-align:center;
+    padding: 9px;
+    float:left;
+    font-size:150%;
+    margin-right:25px;
+}
+
+
+.btn-app img {
+    
+    height:50px;
+    width:auto;
+    margin-right:10px;
+}
+
+.btn-app:link, .btn-app:visited {
+    border:0px solid transparent;
+    transition: border-bottom 0.5s;
+    /* We need this padding!!! */
+    padding-bottom:5px;
+}
+
+.btn-app:hover {
+    border-bottom: 5px solid #e67e22;
+    transition: border-bottom 0.2s;
+}
+
+/*--------------------------------------- */
+/* Cities */
+/*--------------------------------------- */
+
+.section-cities h2 {
+    font-weight: 300;
+}
+
+.box img {
+    width:100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.city-feature {
+    margin-bottom: 5px;
+}
+
+/*--------------------------------------- */
+/* Testimonials */
+/*--------------------------------------- */
+.section-testimonials {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/back-customers.jpg');
+    background-size: cover;
+    color:#fff;
+    background-attachment: fixed;
+}
+
+.section-testimonials h2 {
+    font-weight: 300;
+}
+
+blockquote {
+  padding:2%;  
+  font-style: italic;
+  line-height: 145%;
+  position: relative;
+  margin-top:40px;
+}
+
+blockquote:before {
+    content: '\201C';
+    font-size: 500%;
+    display: block;
+
+    /* When we make an element absolute position, we have to ensure that it's parent has a relative position.So in this case
+    the parent of blockquote:before is <blockquote> */
+    position: absolute; 
+    top:0px;
+    left:0;
+}
+
+cite {
+    font-size: 90%;
+    margin-top: 25px;
+    display: block;
+}
+
+cite img {
+    height:90px;
+    border-radius: 50%; /* This makes any element round (circle) */
+    margin-right: 10px;
+    vertical-align: middle; /* We want our image to aligned with the text. */
+}
+
+/*--------------------------------------- */
+/* Plans */
+/*--------------------------------------- */
+
+.section-plans {
+    background-color: #f4f4f4;
+}
+
+.section-plans h2 {
+    font-weight: 300;
+}
+
+.plan-box {
+    background-color: #fff;
+    border-radius: 20px;
+    width:90%;
+    margin: 0 auto; /* Or margin-left:5%; because 5*2 + 90 = 100% */
+    box-shadow: 5px 5px 2px #e3e3e3;
+}
+
+.plan-box div {
+    padding: 8%;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.plan-box div:first-child {
+    background-color: #fcfcfc;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/* Last <div> (which is the child of .plan-box) in the .plan-box */
+.plan-box div:last-child {
+    text-align:center;
+    border:none;
+}
+
+.plan-price {
+    font-size:300%;
+    font-weight: 100;
+    color:#e67e22;
+}
+
+.plan-price span {
+    font-size:30%;
+    font-weight: 300;
+}
+
+.plan-price-meal {
+    font-size:80%;
+}
+
+.plan-box ul {
+    list-style: none;
+}
+
+.plan-box ul li {
+    padding:5px 0;
+}
+
+/*--------------------------------------- */
+/* Form */
+/*--------------------------------------- */
+
+.section-form .row:last-of-type {
+    margin-top:40px;
+}
+
+.section-form h2 {
+    font-weight: 300;
+}
+
+.contact-form {
+    width:60%;
+    margin: 0 auto; /* Or margin-left: 20% (half of difference between 100 and 60) */
+}
+
+input[type=text], input[type=email], select, textarea {
+    width:100%;
+    padding: 7px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    height: 100px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    margin: 10px 10px 10px 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+.form-messages {
+    width: 70%;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    border-radius: 5px;
+    color:#333;
+}
+
+.success {
+    background-color: rgba(31, 191, 68, 0.8);
+}
+
+.error {
+    background-color: rgba(209, 46, 46, 0.8);
+}
+
+/*--------------------------------------- */
+/* Footer */
+/*--------------------------------------- */
+
+footer {
+    background-color: #333;
+    padding: 50px 50px 20px 50px;
+    font-size:90%;
+}
+
+.footer-nav {
+    list-style: none;
+    float:left;
+}
+
+.social-links {
+    list-style: none;
+    float:right;
+}
+
+.footer-nav li, .social-links li {
+    /* If you want <li> sit next to each other : display:inline-block; */
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* important: You must set :last-child on the childs selector itself, for example in this case the child selector is li so you 
+must use :last-child on it not on the parent itself(.footer-nav and .social-links) */
+.footer-nav li:last-child, .social-links li:last-child {
+    margin-right:0;
+}
+
+/* You must use li and then a to actually select a elements inside li elements.Because if you don't do this, this means
+a elements are the direct child of .footer-nav but in this case this is false! */
+.footer-nav li a:link, .footer-nav li a:visited,
+.social-links li a:link, .social-links li a:visited {
+    text-decoration: none;
+    border: none;
+    color: rgb(179, 179, 179);
+    transition: color 0.4s;
+    
+}
+
+.footer-nav li a:hover, .footer-nav li a:active {
+    color: #ddd;
+     transition: color 0.4s;
+}
+
+.social-links li a:link, .social-links li a:visited {
+    font-size: 170%;
+   
+}
+
+/* Important: For making the hover on and hover off, you must set transitions on both sides-> one side is the normal state
+and on side is the hover state. For doing this on links (<a> and ...) you can use :link and :visited on normal state adn
+:hover on hover state. But this case for icons <i> works little different. For normal state you shouldn't use :link or 
+:visited and you should use the normal sate without any psuedo class selector for icons. */
+
+.facebook-icon, .twitter-icon, .google-icon, .instagram-icon {
+    transition: color 0.4s;
+}
+
+.facebook-icon:hover, .facebook-icon:active {
+    color:#3b5983;
+    transition: color 0.4s;
+}
+
+.twitter-icon:hover, .twitter-icon:active {
+    color:#00aced;
+    transition: color 0.4s;
+}
+
+.google-icon:hover, .google-icon:active {
+    color:#dd4b39;
+    transition: color 0.4s;
+}
+
+.instagram-icon:hover, .instagram-icon:active {
+    color:#fb3958;
+    transition: color 0.4s;
+}
+
+footer p {
+    text-align: center;
+    color: rgb(179, 179, 179);
+    margin-top: 30px;
+}
+
+/*--------------------------------------- */
+/* Animation classes */
+/*--------------------------------------- */
+
+/* The best approach 💕 : */
+.js--wp-1 {
+    opacity: 0;
+    animation-name:fadeInLeft;
+    -webkit-animation-name: fadeInLeft;
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+    animation-duration: 1.3s;
+    -webkit-animation-duration: 1.3s;
+}
+
+.js--wp-2 {
+    opacity: 0;
+    animation-name:fadeInRight;
+    -webkit-animation-name: fadeInRight;
+    animation-duration: 1.3s;
+    -webkit-animation-duration: 1.3s;
+}
+
+/* Because the .js--wp-6 animation is not some kind of fading, so we must define .animated here.(Remember for fadeIn animations
+we must define .animated individually.) */
+.js--wp-6.animated {
+    animation-name:bounceIn;
+    -webkit-animation-name: bounceIn;
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+}
+
+ .js--wp-3, .js--wp-4, .js--wp-5 {
+    /* For animations, if you have something like fadeIn that requires the visibility of element to be none (element must be
+    invisible in the beginning of the animation) you can't use display:none. You must use opacity: 0
+    and then once the 'js--wp-1' class also has the animated class, then we want the opacity back to one.
+     And then once the 'js--waypoint-1' class also has the 'animated' class then we want the opacity back to one.*/
+    opacity: 0;
+}
+
+/* Remember: .js--wp-1 .animated means: .animated class in inside the .js--wp-1 class, but what we want now is that 'js--wp-1'
+ class must have .animated class next to itself.Sth like this: class="js--wp-1 animated" So we say when we have these 2 classes
+ together, apply these styles. We need to use this tecnique for all the fadeIn animations.*/
+/* So we are saying if the element has js--wp-1 class and animated class at THE SAME TIME, then apply these styles:*/
+.js--wp-1.animated, .js--wp-2.animated, .js--wp-3.animated, .js--wp-4.animated, .js--wp-5.animated {
+    opacity:1;
+}
+
+/*--------------------------------------- */
+/* Customize the animation classes */
+/*--------------------------------------- */
+
+/* For customizing the animations, first you have to select the class of that specific animation and then use animation-name
+ property to specify the name of the animation you want to customize and then you can specify the duration.
+  If you do the following attempt, all of the fadeIn animations will exact same style and this is not good, so we can apply these
+  styles in each js class of animations. So the best approach is the approach with defining a js class (we define some kind of js class
+  because JS is actually running or triggering those animations.) and we specify animation-name and animation-duration for each
+  js class which has animation.
+
+  Important: We MUST specify the name of animation when trying to modify the default animations with `animation-name` and
+    `-webkit-animation-name` properties. */
+
+/*--------------------------------------- */
+/* Bad practice: */
+/*--------------------------------------- */
+
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+}
+
+
+/*--------------------------------------- */
+/* End of bad practice. */
+/*--------------------------------------- */
+
+
+
+

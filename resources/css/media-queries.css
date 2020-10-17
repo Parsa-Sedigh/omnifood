@@ -1,0 +1,252 @@
+/* Standard breakpoints: 480px, 768px, 1024px 1200 */
+
+/* Big tablets to 1200px (width smaller than .row) Remember: Our .row class had max-width of 1140px so when the size
+of browser is going to close to that value, we want our website to change it's apperance.This way we always have some
+margins at the right and the left side.  */
+
+@media only screen and (max-width: 1200px) {
+    /* These style we added in this block, will apply when the width of browser goes under 1200px until it gets to 1023px
+    and under 1023px, new styles would apply. (BUT remember, until you don't overwrite the styles in this block, the
+    styles of this block will remain until even 1px!!!!!!!). So it doesn't need that we define these styles for all of 
+    the @media queries, becasue if the width of browser even goes under 1023px (which is our next break point), the styles
+    of this block would remain !! UNTIL you overwrite them in those blocks!  */
+
+    /* We listed here whatever we want to change if the width of the browser is under 1200px */
+    .hero-text-box {
+        width: 100%;
+        /* Create some padding in order to create some space between the text and the border of browser */ 
+        padding: 0 2%;
+    }
+
+    .row {
+        padding:0 2%;
+    }
+}
+
+/* Small tablets to big tablets: from 768px to 1023px  */
+
+/* In this media query, we can set things so if the browser's width goes under 1023px, what new styles we want to apply. */
+@media only screen and (max-width: 1023px) {
+
+    /* html or body here doesn't matter. */
+    html {
+        font-size: 18px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .long-copy {
+        width:80%;
+        margin-left: 10%; /*  80 + 10*2 =100*/
+    }
+
+    .steps-box {
+        margin-top: 10px;
+    }
+
+    .steps-box:last-child {
+        margin-top: 10px;
+    }
+
+    .works-step {
+        margin-bottom: 40px;
+    }
+
+    .works-step:last-of-type {
+        margin-bottom: 60px;
+    }
+
+    .app-screen {
+        width: 50%;
+    }
+
+    .icon-small {
+        width: 17px;
+        margin-right: 5px;
+    }
+
+    .city-feature {
+        margin: 0 auto;
+        font-size: 90%;
+        width: 50%;
+        padding-top:10px;
+    }
+
+    .city-feature ion-icon {
+        float: left;
+    }
+
+    .plan-box {
+        width:100%;
+        margin-left: 0%;
+    }
+
+    .plan-price {
+        font-size: 250%;
+    }
+
+    .contact-form {
+        width: 80%;
+    }
+
+}
+
+/* Small phones to small tablets: from 481px to 767px  */
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 30px 0;
+    }
+
+    .row, .hero-text-box {
+
+        /* padding is 0 for top and bottom and 4% for right and left: */
+        padding: 0 4%;
+    }
+
+    .col {
+        /* Now we want our columns not to sit next to each other, but we want them to stacked on top of each other.So 
+        we can make them takes the whole width. Also remember that making them to display:block; won't work, becasue 
+        they were used width: 100% with float, so making them again display:block won't work.
+        Learn: So if you have a display:block element that also has float, for making it forces line break, you can set 
+        it's width to 100% */
+        width: 100%;
+        margin: 0 0 4% 0;
+    }
+
+    /* We want to use mobile navigation in this browser size, so we must hide that old navigation: */
+
+    .main-nav {
+        display:none;
+    }
+
+    .mobile-nav-icon {
+        display: inline-block;
+    }
+
+    .main-nav {
+        float:left;
+        margin-top:35px;
+        margin-left: 25px;
+    }
+
+    .main-nav li {
+        display:block;
+    }
+
+    .main-nav li a:link, .main-nav li a:visited {
+        display:block;
+        border:0;
+        padding: 10px 0;
+        font-size: 100%;
+    }
+
+    .sticky {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background-color: rgba(255, 255, 255, 0.774);
+        box-shadow: 0 6px 6px #efefef;
+        z-index: 9999;
+    }
+
+    .sticky .main-nav {
+        margin-top:10px;
+        display:none;
+    }
+
+    .sticky .main-nav li a:link , .sticky .main-nav li a:visited {
+        padding:10px 0;
+    }
+
+    .sticky .mobile-nav-icon ion-icon {
+        color:#555;
+    }
+
+    .long-copy {
+        width:100%;
+        margin-left: 0%; 
+    }
+
+    /* TODO: Icons doesn't align on top of each other correctly. */
+    .section-cities img {
+        width:70%;
+
+        /* margin: 0 auto; won't work!!! */
+        margin-left:15%;
+    }
+
+    .section-cities .city-feature  {
+        text-align:center;
+    }
+
+    .section-cities h3 {
+        text-align:center;
+    }
+
+    h1 {
+        font-size:180%;
+    }
+
+    h2 {
+        font-size: 150%;
+    }
+
+    .section-cities .row div div ion-icon {
+        vertical-align: middle;
+    }
+
+    .app-screen {
+        width: 80%;
+    }
+
+    .steps-box:first-child {
+        text-align: center;
+    }
+
+    .works-step {
+        margin-bottom: 20px;
+        display:flex;
+        align-items: center;
+    }
+
+    .works-step div {
+        /* When you change the width of a circle, you must change the height of it too! To still be a circle! */
+        height: 40px;
+        width:40px;
+        margin-right: 15px;
+        font-size: 120%;
+        padding:9px 12px 12px 12px;
+    }
+
+    .works-step:last-of-type {
+        margin-bottom: 20px;
+    }
+
+    .btn-app:last-of-type img {
+       margin-top:20px;
+    }
+}
+
+/* Small phones from 0 to 480px */
+/* These rules in the {} will apply when the width of the device or the browser is less or equal 480px. */
+@media only screen and (max-width: 480px) {
+    .section {
+        padding: 25px 0;
+    }
+
+    .contact-form {
+        width:100%;
+    }
+}
+
+
+
+
+
